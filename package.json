@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-plugin-download-google-fonts",
+  "name": "gatsby-plugin-prefetch-google-fonts",
   "version": "1.0.2",
   "keywords": [
     "gatsby-plugin",
@@ -11,6 +11,7 @@
     "google",
     "webfont",
     "webfontloader",
+    "prefetch",
     "download",
     "downloader",
     "local"
