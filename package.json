@@ -30,15 +30,13 @@
     "dev:gatsby": "gatsby develop --open",
     "env": "node utils/env",
     "lint": "eslint ./",
-    "live": "opn https://project-boilerplate.netlify.com/",
-    "netlify": "opn https://app.netlify.com/sites/project-boilerplate/deploys",
     "patch": "node utils/patch",
     "precommit": "lint-staged",
     "prepublishOnly": "npm run build",
     "reset": "node utils/reset",
     "serve": "gatsby serve --open",
     "test": "echo 'No test specified'",
-    "travis": "opn https://travis-ci.org/escaladesports/project-boilerplate/branches"
+    "travis": "opn https://travis-ci.org/escaladesports/gatsby-plugin-prefetch-google-fonts/branches"
   },
   "jest": {
     "testRegex": "/.*(__tests__\\/.*)|(.*(test|spec))\\.jsx?$",
