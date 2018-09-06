@@ -1,4 +1,4 @@
-# gatsby-plugin-download-google-fonts
+# gatsby-plugin-prefetch-google-fonts
 
 A Gatsby plugin to download and prefetch [Google Fonts](https://fonts.google.com/). Can increase performance as opposed to loading webfonts from Google's external stylesheet.
 
@@ -7,13 +7,13 @@ A Gatsby plugin to download and prefetch [Google Fonts](https://fonts.google.com
 With npm:
 
 ```bash
-npm install --save gatsby-plugin-download-google-fonts
+npm install --save gatsby-plugin-prefetch-google-fonts
 ```
 
 Or with Yarn:
 
 ```bash
-yarn add gatsby-plugin-download-google-fonts
+yarn add gatsby-plugin-prefetch-google-fonts
 ```
 
 ## Usage
@@ -24,7 +24,7 @@ In your `gatsby-config.js` file, load in the plugin along with which web fonts t
 module.exports = {
   plugins: [
     {
-      resolve: `download-google-fonts`,
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {

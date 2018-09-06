@@ -20,7 +20,7 @@
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/escaladesports/gatsby-plugin-download-google-fonts.git"
+    "url": "https://github.com/escaladesports/gatsby-plugin-prefetch-google-fonts.git"
   },
   "license": "MIT",
   "scripts": {
@@ -28,7 +28,7 @@
     "prepublishOnly": "npm run build",
     "reset": "esca-scripts reset",
     "test": "npm run build && esca-scripts test",
-    "travis": "opn https://travis-ci.org/escaladesports/gatsby-plugin-download-google-fonts/branches"
+    "travis": "opn https://travis-ci.org/escaladesports/gatsby-plugin-prefetch-google-fonts/branches"
   },
   "devDependencies": {
     "esca-scripts": "^1.4.0",
