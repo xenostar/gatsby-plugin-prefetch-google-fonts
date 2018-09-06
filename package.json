@@ -1,6 +1,10 @@
 {
   "name": "gatsby-plugin-prefetch-google-fonts",
-  "version": "1.0.9",
+  "version": "1.0.8",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/escaladesports/gatsby-plugin-prefetch-google-fonts.git"
+  },
   "keywords": [
     "gatsby-plugin",
     "gatsby",
