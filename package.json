@@ -21,6 +21,7 @@
     "local"
   ],
   "author": "Kennedy Rose <krose@escaladesports.com>",
+  "license": "MIT",
   "scripts": {
     "build": "npm run build:plugin",
     "build:gatsby": "npm run patch && NODE_ENV=production gatsby build",
