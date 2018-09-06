@@ -37,7 +37,7 @@
     "prepublishOnly": "npm run build",
     "reset": "node utils/reset",
     "serve": "gatsby serve --open",
-    "test": "jest",
+    "test": "echo 'No test specified'",
     "travis": "opn https://travis-ci.org/escaladesports/project-boilerplate/branches"
   },
   "jest": {
