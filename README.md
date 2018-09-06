@@ -1,24 +1,45 @@
-# New Project Boilerplate
+# gatsby-plugin-prefetch-google-fonts
 
-A simple starter for new web applications, Gatsby plugins, react components, or JavaScript modules.
+A Gatsby plugin to download and prefetch [Google Fonts](https://fonts.google.com/). Can increase performance as opposed to loading webfonts from Google's external stylesheet.
 
 ## Installation
 
+With npm:
+
 ```bash
-git clone git@github.com:escaladesports/gatsby-boilerplate.git your-website
-cd your-website
-yarn
-yarn reset
+npm install --save gatsby-plugin-prefetch-google-fonts
+```
+
+Or with Yarn:
+
+```bash
+yarn add gatsby-plugin-prefetch-google-fonts
 ```
 
 ## Usage
 
-- `yarn dev`: Starts up live development server
-- `yarn build`: Builds site for production
-- `yarn reset`: Changes the project name in `package.json` to match the directory, resets the version number, and resets the git history.
-- `yarn env`: Pulls Netlify environment variables into a local `.env` file. (Only works if you have logged into [netlifyctl](https://github.com/netlify/netlifyctl#command-line-login) at least once and have permissions to the Netlify site)
+In your `gatsby-config.js` file, load in the plugin along with which web fonts to load.
 
-## Preparing boilerplate to create Gatsby plugins
+```javascript
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Oswald`,
+            subsets: [`latin`],
+          },
+          {
+            family: `Open Sans`,
+            variants: [`400`, `700`]
+          },
+        ],
+      },
+    }
+  ]
+}
+```
 
-- Develop plugin in `./plugins/export` directory
-- Change `build` script to `npm run build:plugin`
+For a list of all available font family options, consult the [google-fonts-plugin readme](https://github.com/SirPole/google-fonts-plugin).
