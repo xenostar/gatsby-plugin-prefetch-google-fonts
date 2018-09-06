@@ -16,7 +16,7 @@
     "downloader",
     "local"
   ],
-  "main": "gatsby-ssr.js",
+  "main": "index.js",
   "author": "Kennedy Rose <krose@escaladesports.com>",
   "repository": {
     "type": "git",
