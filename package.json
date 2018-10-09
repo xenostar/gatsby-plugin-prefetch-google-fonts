@@ -27,7 +27,7 @@
     "build:gatsby": "npm run patch && NODE_ENV=production gatsby build",
     "build:module": "rm -rf dist && mkdir dist && babel src/export --out-dir dist",
     "build:plugin": "babel plugins/export --out-dir ./",
-    "build:plugin:dev": "rm -rf plugins/dist && mkdir plugins/dist && babel plugins/export --out-dir plugins/dist && cp plugins/export/package.json plugins/dist/package.json",
+    "build:plugin:dev": "rm -rf plugins/dist && mkdir plugins/dist && cd plugins/export && babel ./ --out-dir ../dist && cp package.json ../dist/package.json",
     "clean": "run-p clean:cache clean:public",
     "clean:cache": "rm -rf .cache",
     "clean:public": "rm -rf public",
@@ -69,17 +69,6 @@
     ],
     "coverageDirectory": "<rootDir>/public/coverage"
   },
-  "babel": {
-    "env": {
-      "test": {
-        "presets": [
-          "es2015",
-          "react",
-          "stage-0"
-        ]
-      }
-    }
-  },
   "lint-staged": {
     "**/*.js": [
       "eslint --fix",
@@ -98,7 +87,28 @@
   },
   "main": "gatsby-ssr.js",
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-decorators": "^7.1.2",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+    "@babel/plugin-proposal-function-bind": "^7.0.0",
+    "@babel/plugin-proposal-function-sent": "^7.1.0",
+    "@babel/plugin-proposal-json-strings": "^7.0.0",
+    "@babel/plugin-proposal-logical-assignment-operators": "^7.0.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.0.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/plugin-proposal-pipeline-operator": "^7.0.0",
+    "@babel/plugin-proposal-throw-expressions": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/plugin-syntax-import-meta": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-emotion": "^9.2.6",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
@@ -112,8 +122,8 @@
     "enzyme-adapter-react-16": "^1.3.0",
     "eslint": "^5.2.0",
     "eslint-config-escalade-sports": "^1.0.1",
-    "gatsby": "^1.9.247",
-    "gatsby-plugin-emotion": "2.0.0-beta.3",
+    "gatsby": "^2.0.19",
+    "gatsby-plugin-emotion": "2.0.5",
     "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
