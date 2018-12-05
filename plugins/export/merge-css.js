@@ -17,6 +17,9 @@ module.exports = async () => {
 
 	let css = createCssString(woff2, woff2Lines)
 	css = new CleanCss().minify(css).styles
+	// Add font-display swap as recommended here https://css-tricks.com/font-display-masses/.
+	css = css.replace(/}/g, ';font-display: swap}');
+	
 	await outputFile(`./.cache/google-fonts/google-fonts.css`, css)
 }
 
