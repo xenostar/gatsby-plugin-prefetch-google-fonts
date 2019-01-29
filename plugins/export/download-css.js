@@ -1,4 +1,9 @@
+const fs = require('fs')
+const path = require('path')
 const GoogleFontsWebpackPlugin = require(`google-fonts-plugin`)
+const mkdirp = require('mkdirp')
+
+const outputDir = `.cache/google-fonts`
 
 module.exports = async ({
 	fonts,
@@ -13,10 +18,15 @@ module.exports = async ({
 	const googleFontsPlugin = new GoogleFontsWebpackPlugin({
 		fonts,
 		formats,
-		outputDir: `.cache/google-fonts`,
 		encode: false,
 		minify: false,
 		verbose: true,
 	})
-	await googleFontsPlugin.make()
+
+	mkdirp.sync(outputDir)
+
+	for (const format of Object.values(googleFontsPlugin.options.formats)) {
+		let css = await this.requestFontsCSS(format);
+		fs.writeFileSync(path.join(outputDir, format + '.css'), css)
+	}
 }
