@@ -1,10 +1,12 @@
 const React = require(`react`)
 const globby = require(`globby`).sync
 const { readFileSync } = require(`fs`)
+const path = require(`path`)
 
-exports.onRenderBody = ({ setHeadComponents }) => {
+exports.onRenderBody = ({pathPrefix, setHeadComponents}) => {
+
 	const files = globby(`./public/google-fonts/**/*.woff2`)
-	const css = readFileSync(`./.cache/google-fonts/google-fonts.css`)
+	const css = readFileSync(path.join(`./.cache/google-fonts/`, pathPrefix, `google-fonts.css`))
 	setHeadComponents([
 		...files.map((file, key) => (
 			<link
@@ -13,7 +15,7 @@ exports.onRenderBody = ({ setHeadComponents }) => {
 				as='font'
 				type='font/woff2'
 				crossOrigin='anonymous'
-				href={file.replace(`./public`, ``)}
+				href={file.replace(`./public`, pathPrefix)}
 			/>
 		)),
 		<style
