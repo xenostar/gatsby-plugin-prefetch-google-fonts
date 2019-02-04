@@ -3,7 +3,7 @@ const globby = require(`globby`).sync
 const { readFileSync } = require(`fs`)
 const path = require(`path`)
 
-exports.onRenderBody = ({pathPrefix, setHeadComponents}) => {
+exports.onRenderBody = ({pathPrefix = ``, setHeadComponents}) => {
 
 	const files = globby(`./public/google-fonts/**/*.woff2`)
 	const css = readFileSync(path.join(`./.cache/google-fonts/`, pathPrefix, `google-fonts.css`))
