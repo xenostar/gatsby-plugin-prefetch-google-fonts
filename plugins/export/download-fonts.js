@@ -7,10 +7,13 @@ const {
 const { parse } = require(`url`)
 const getUrls = require(`get-urls`)
 const download = require(`download`)
+const path = require(`path`)
 
-const filePath = `./.cache/google-fonts/google-fonts.css`
 
-module.exports = async () => {
+module.exports = async (config) => {
+
+	const cachedPath = path.join(`./.cache/google-fonts/`, config.pathPrefix)
+	const filePath = path.join(cachedPath, `google-fonts.css`)
 
 	// Extract URLs from CSS
 	let cssData = await readFile(filePath, `utf8`)
@@ -29,11 +32,11 @@ module.exports = async () => {
 		if (fontPaths.indexOf(pathname) === -1){
 			fontPaths.push(pathname)
 		}
-		if(!await pathExists(`./.cache/google-fonts/fonts${pathname}`)){
+		if(!await pathExists(`${cachedPath}/fonts${pathname}`)){
 			let dirPath = pathname.split(`/`)
 			dirPath.pop()
 			dirPath = dirPath.join(`/`)
-			dirPath = `./.cache/google-fonts/fonts${dirPath}`
+			dirPath = `${cachedPath}/fonts${dirPath}`
 			await ensureDir(dirPath)
 			await download(url, dirPath)
 		}
@@ -42,7 +45,7 @@ module.exports = async () => {
 	// Replace domains with relative paths in CSS
 	domains.forEach(domain => {
 		while (cssData.indexOf(domain) !== -1) {
-			cssData = cssData.replace(domain, `/google-fonts`)
+			cssData = cssData.replace(domain, path.join(config.pathPrefix, `/google-fonts`))
 		}
 	})
 
