@@ -33,7 +33,7 @@ module.exports = async (config) => {
 			fontPaths.push(pathname)
 		}
 		if(!await pathExists(`${cachedPath}/fonts${pathname}`)){
-			let dirPath = pathname.split(`/`)
+			let dirPath = pathname.split(/[\/\\]/)
 			dirPath.pop()
 			dirPath = dirPath.join(`/`)
 			dirPath = `${cachedPath}/fonts${dirPath}`
@@ -45,7 +45,7 @@ module.exports = async (config) => {
 	// Replace domains with relative paths in CSS
 	domains.forEach(domain => {
 		while (cssData.indexOf(domain) !== -1) {
-			cssData = cssData.replace(domain, path.join(config.pathPrefix, `/google-fonts`))
+			cssData = cssData.replace(domain, path.join(config.pathPrefix, `/google-fonts`)).replace(/\\/g, '/')
 		}
 	})
 
