@@ -42,10 +42,12 @@ module.exports = async (config) => {
 		}
 	}
 
+	const rootPath = `${config.pathPrefix.replace(/\/$/, ``)}/google-fonts`
+
 	// Replace domains with relative paths in CSS
 	domains.forEach(domain => {
 		while (cssData.indexOf(domain) !== -1) {
-			cssData = cssData.replace(domain, path.join(config.pathPrefix, `/google-fonts`)).replace(/\\/g, '/')
+			cssData = cssData.replace(domain, rootPath).replace(/\\/g, `/`)
 		}
 	})
 
