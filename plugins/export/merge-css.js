@@ -21,31 +21,53 @@ module.exports = async (config) => {
 
 	let css = createCssString(woff2, woff2Lines)
 	css = new CleanCss().minify(css).styles
-	
+
 	// Add font-display swap as recommended here https://css-tricks.com/font-display-masses/.
 	css = css.replace(/}/g, `;font-display: swap;}`)
-	
+
 	await outputFile(`${cachedPath}/google-fonts.css`, css)
 }
 
 function getLines(data) {
-	const lines = {}
-	data.split(`\n`).forEach(line => {
-		line = line.trim()
-		if (line.indexOf(`src:`) === 0) {
-			let items = line
-				.replace(`;`, ``)
-				.replace(`src:`, ``)
-				.split(`,`)
-				.map(item => item.trim())
-			let name = items.shift()
-			lines[name] = {
-				items,
-				line: line.replace(`;`, ``),
-			}
-		}
-	})
-	return lines
+  const lines = {}
+  const name = {}
+  data.split(`\n`).forEach(line => {
+    line = line.trim()
+    if (line.indexOf(`font-family:`) === 0) {
+      name.family = line
+        .replace(`;`, ``)
+        .replace(`font-family:`, ``)
+        .replace(/'/g, ``)
+        .trim()
+    }
+    if (line.indexOf(`font-style:`) === 0) {
+      name.style = line
+        .replace(`;`, ``)
+        .replace(`font-style:`, ``)
+        .replace(/'/g, ``)
+        .trim()
+    }
+    if (line.indexOf(`font-weight:`) === 0) {
+      name.weight = line
+        .replace(`;`, ``)
+        .replace(`font-weight:`, ``)
+        .replace(/'/g, ``)
+        .trim()
+    }
+    if (line.indexOf(`src:`) === 0) {
+      let items = line
+        .replace(`;`, ``)
+        .replace(`src:`, ``)
+        .split(`,`)
+        .map(item => item.trim())
+
+      lines[`${name.family} ${name.style} ${name.weight}`] = {
+        items,
+        line: line.replace(`;`, ``),
+      }
+    }
+  })
+  return lines
 }
 
 function mergeLines(origin, newLines){
